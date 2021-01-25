@@ -2,7 +2,7 @@
 
 namespace Motel.Migrations
 {
-    public partial class InitialMIgration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,3 +1,6 @@
+using System;
+using System.Text.Json.Serialization;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +22,13 @@ namespace Motel
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddScoped<IMotelRepo, MockMotelRepo>();
-            // services.AddDbContext<MotelContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MotelConnection")));
+            var mvc = services.AddControllers();
+
             services.AddDbContext<MotelContext>(options => options.UseSqlite("Data Source=motel.db"));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IMotelRepo, SqliteMotelRepo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
