@@ -30,7 +30,7 @@ namespace Motel.Controllers
         }
 
         //GET api/rooms/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetRoomById")]
         public async Task<ActionResult<RoomReadDto>> GetRoomById(int id)
         {
             var room = await _repository.GetRoomById(id);
@@ -41,6 +41,37 @@ namespace Motel.Controllers
             }
 
             return Ok(_mapper.Map<RoomReadDto>(room));
+        }
+
+
+        //POST api/rooms
+        [HttpPost]
+        public async Task<ActionResult<RoomReadDto>> CreateRoom(RoomCreateDto dto)
+        {
+
+            var room = _mapper.Map<Room>(dto);
+            await _repository.CreateRoom(room);
+            await _repository.SaveChanges();
+
+            return CreatedAtRoute(nameof(GetRoomById), new { Id = room.Id }, room);
+        }
+
+        //PUT api/rooms/{id}
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateRoom(int id, RoomUpdateDto dto)
+        {
+            var room = await _repository.GetRoomById(id);
+
+            if (room == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(dto, room);
+            await _repository.UpdateRoom(room);
+            await _repository.SaveChanges();
+
+            return NoContent();
         }
 
 

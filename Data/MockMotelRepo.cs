@@ -7,6 +7,11 @@ namespace Motel.Data
 {
     public class MockMotelRepo : IMotelRepo
     {
+        public Task CreateRoom(Room room)
+        {
+            throw new System.NotImplementedException();
+        }
+
         //Get all the rooms in the database
         public async Task<IEnumerable<Room>> GetAllRooms()
         {
@@ -28,6 +33,16 @@ namespace Motel.Data
             await Task.Delay(100);
             var room = new Room { Id = 0, Name = "Regular Room", RoomTypeId = 1 };
             return room;
+        }
+
+        public Task<bool> SaveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task UpdateRoom(Room room)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
