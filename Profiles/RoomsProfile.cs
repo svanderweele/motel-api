@@ -9,6 +9,8 @@ namespace Motel.Profiles{
         public RoomsProfile()
         {
             CreateMap<Room, RoomReadDto>();
+            CreateMap<RoomCreateDto, Room>();
+            CreateMap<RoomUpdateDto, Room>();
         }
     }
 }
