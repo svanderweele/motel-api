@@ -8,8 +8,8 @@ using Motel.Data;
 namespace Motel.Migrations
 {
     [DbContext(typeof(MotelContext))]
-    [Migration("20210125112123_InitialMIgration")]
-    partial class InitialMIgration
+    [Migration("20210125130143_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

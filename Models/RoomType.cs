@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Motel.Models
@@ -9,6 +10,7 @@ namespace Motel.Models
 
         [Required]
         public string Name { get; set; }
+
     }
 
 }
