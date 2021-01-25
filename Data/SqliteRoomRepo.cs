@@ -7,11 +7,11 @@ using Motel.Models;
 
 namespace Motel.Data
 {
-    public class SqliteMotelRepo : IMotelRepo
+    public class SqliteRoomRepo : IRoomRepo
     {
         private MotelContext _context;
 
-        public SqliteMotelRepo(MotelContext context)
+        public SqliteRoomRepo(MotelContext context)
         {
             _context = context;
         }
@@ -36,9 +36,19 @@ namespace Motel.Data
             return await _context.Rooms.Include(x => x.RoomType).ToArrayAsync();
         }
 
+        public async Task<IEnumerable<RoomType>> GetAllRoomTypes()
+        {
+            return await _context.RoomTypes.ToArrayAsync();
+        }
+
         public async Task<Room> GetRoomById(int id)
         {
             return await _context.Rooms.Include(x => x.RoomType).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<RoomType> GetRoomTypeById(int id)
+        {
+            return await _context.RoomTypes.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<bool> SaveChanges()

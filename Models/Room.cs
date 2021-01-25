@@ -1,9 +1,10 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Motel.Models
 {
 
-    public class Room
+    public class Room : LoggingEntity
     {
         [Key]
         public int Id { get; set; }

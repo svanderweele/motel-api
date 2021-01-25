@@ -13,10 +13,10 @@ namespace Motel.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly IMotelRepo _repository;
+        private readonly IRoomRepo _repository;
         private readonly IMapper _mapper;
 
-        public RoomsController(IMotelRepo repository, IMapper mapper)
+        public RoomsController(IRoomRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -49,6 +49,12 @@ namespace Motel.Controllers
         [HttpPost]
         public async Task<ActionResult<RoomReadDto>> CreateRoom(RoomCreateDto dto)
         {
+            var roomType = await _repository.GetRoomTypeById(int.Parse(dto.RoomTypeId));
+
+            if (roomType == null)
+            {
+                return NotFound("Room Type was not found!");
+            }
 
             var room = _mapper.Map<Room>(dto);
             await _repository.CreateRoom(room);
