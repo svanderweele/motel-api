@@ -12,6 +12,11 @@ namespace Motel.Data
             throw new System.NotImplementedException();
         }
 
+        public Task DeleteRoom(Room room)
+        {
+            throw new System.NotImplementedException();
+        }
+
         //Get all the rooms in the database
         public async Task<IEnumerable<Room>> GetAllRooms()
         {

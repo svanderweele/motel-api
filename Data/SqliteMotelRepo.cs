@@ -25,6 +25,12 @@ namespace Motel.Data
            await _context.Rooms.AddAsync(room);
         }
 
+        public async Task DeleteRoom(Room room)
+        {
+            await Task.Delay(0);
+            _context.Rooms.Remove(room);
+        }
+
         public async Task<IEnumerable<Room>> GetAllRooms()
         {
             return await _context.Rooms.Include(x => x.RoomType).ToArrayAsync();

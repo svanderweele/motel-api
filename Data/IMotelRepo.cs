@@ -11,5 +11,7 @@ namespace Motel.Data
         Task<Room> GetRoomById(int id);
         Task CreateRoom(Room room);
         Task UpdateRoom(Room room);
+
+        Task DeleteRoom(Room room);
     }
 }

@@ -11,6 +11,7 @@ namespace Motel.Profiles{
             CreateMap<Room, RoomReadDto>();
             CreateMap<RoomCreateDto, Room>();
             CreateMap<RoomUpdateDto, Room>();
+            CreateMap<Room, RoomUpdateDto>();
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Motel.Data;
+using Newtonsoft.Json.Serialization;
 
 namespace Motel
 {
@@ -23,6 +24,11 @@ namespace Motel
         public void ConfigureServices(IServiceCollection services)
         {
             var mvc = services.AddControllers();
+            mvc.AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
 
             services.AddDbContext<MotelContext>(options => options.UseSqlite("Data Source=motel.db"));
 
