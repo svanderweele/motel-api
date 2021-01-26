@@ -4,7 +4,7 @@ using Motel.Models;
 
 namespace Motel.Data
 {
-    public interface IMotelRepo
+    public interface IRoomRepo
     {
         Task<bool> SaveChanges();
         Task<IEnumerable<Room>> GetAllRooms();
@@ -13,5 +13,8 @@ namespace Motel.Data
         Task UpdateRoom(Room room);
 
         Task DeleteRoom(Room room);
+
+        Task<IEnumerable<RoomType>> GetAllRoomTypes();
+        Task<RoomType> GetRoomTypeById(int roomTypeId);
     }
 }

@@ -34,7 +34,8 @@ namespace Motel
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IMotelRepo, SqliteMotelRepo>();
+            services.AddScoped<IRoomRepo, SqliteRoomRepo>();
+            services.AddScoped<IBookingRepo, SqliteBookingRepo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

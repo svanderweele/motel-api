@@ -5,7 +5,7 @@ using Motel.Models;
 
 namespace Motel.Data
 {
-    public class MockMotelRepo : IMotelRepo
+    public class MockMotelRepo : IRoomRepo
     {
         public Task CreateRoom(Room room)
         {
@@ -32,12 +32,22 @@ namespace Motel.Data
             return rooms;
         }
 
+        public Task<IEnumerable<RoomType>> GetAllRoomTypes()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task<Room> GetRoomById(int id)
         {
             //Mock an async call
             await Task.Delay(100);
             var room = new Room { Id = 0, Name = "Regular Room", RoomTypeId = 1 };
             return room;
+        }
+
+        public Task<RoomType> GetRoomTypeById(int roomTypeId)
+        {
+            throw new System.NotImplementedException();
         }
 
         public Task<bool> SaveChanges()
